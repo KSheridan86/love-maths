@@ -1,11 +1,11 @@
 // Wait for the DOM to finish loading before running the game
 // Get the button elements and add event listeners to them
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.querySelectorAll("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "submit") {
                 checkAnswer();
             } else {
@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 
 function runGame(gameType) {
- let num1 = Math.floor(Math.random() * 25) + 1;
- let num2 = Math.floor(Math.random() * 25) + 1;
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
- if(gameType === 'addition') {
-     displayAdditionQuestion(num1, num2);
- } else {
-     alert(`Unknown game type: ${gameType}`);
-     throw `Unknown game type: ${gameType}. Aborting!`;
- }
+    if (gameType === 'addition') {
+        displayAdditionQuestion(num1, num2);
+    } else {
+        alert(`Unknown game type: ${gameType}`);
+        throw `Unknown game type: ${gameType}. Aborting!`;
+    }
 }
 /**
  * Checks the answer against the first element in the returned array
@@ -42,8 +42,11 @@ function checkAnswer() {
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
-        alert('Correct!!')
+        incrementScore();
+        alert('Correct!!');
+
     } else {
+        incrementWrongAnswer();
         alert(`Wrong, correct answer is ${calculatedAnswer[0]}`)
     }
 
@@ -66,13 +69,17 @@ function calculateCorrectAnswer() {
         throw `unknown operator ${operator}. Aborting`;
     }
 }
-
+/**
+ * gets the current score from the dom and increments by 1
+ */
 function incrementScore() {
-
+    let oldScore = parseInt(document.querySelector('#score').innerText);
+    document.querySelector('#score').innerText = ++oldScore;
 }
 
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.querySelector('#incorrect').innerText);
+    document.querySelector('#incorrect').innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
@@ -86,5 +93,5 @@ function displaySubtractQuestion() {
 }
 
 function displayMultiplyQuestion() {
-    
+
 }
