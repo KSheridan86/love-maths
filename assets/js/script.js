@@ -110,7 +110,7 @@ function displayAdditionQuestion(operand1, operand2) {
     document.querySelector('#operator').textContent = '+';
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
     document.querySelector('#operand1').textContent = operand1 > operand2 ? operand1 : operand2;
     document.querySelector('#operand2').textContent = operand1 > operand2 ? operand2 : operand1;
     document.querySelector('#operator').textContent = '-';
