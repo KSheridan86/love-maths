@@ -123,7 +123,7 @@ function displayMultiplyQuestion(operand1, operand2) {
 }
 
 function displayDivisionQuestion(operand1, operand2) {
-    document.querySelector('#operand1').textContent = operand1;
+    document.querySelector('#operand1').textContent = operand1 * operand2;
     document.querySelector('#operand2').textContent = operand2;
     document.querySelector('#operator').textContent = '/';
 }
